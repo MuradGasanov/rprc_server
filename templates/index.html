@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block title %}Главная{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/index.css" %}"/>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static "js/index.js" %}" ></script>
+{% endblock %}
+
+{% block header_menu %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+
+{#        {% if is_authenticated %}#}
+{#        <ul class="nav navbar-nav navbar-right">#}
+{#            <li><span class="k-button add_term"><span class="glyphicon glyphicon-plus"></span> Добавить</span></li>#}
+{#            <li><a id="logout" href="#">Выход</a></li>#}
+{#        </ul>#}
+{#        {% else %}#}
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout/">Выход</a></li>
+        </ul>
+{#        {% endif %}#}
+    </div>
+    <!-- /.navbar-collapse -->
+{% endblock %}
+
+{% block content %}
+
+    <div id="index">
+
+    </div>
+
+    <div id="terms"></div>
+    <div id="pager" class="k-pager-wrap"></div>
+
+{% endblock %}
+
+{% block footer_script %}
+{#    <script src="{% static "js/gremlins.min.js" %}"></script>#}
+{#    <script>#}
+{#        gremlins.createHorde().unleash();#}
+{#    </script>#}
+{% endblock %}

@@ -15,6 +15,7 @@ class CashierSupervisor(User):
     patr = models.CharField(max_length=30)  # Отчество
     tel = models.CharField(max_length=20)
     imei = models.CharField(max_length=20)
+    outer_id = models.IntegerField(default=0, null=True)
     image = models.ImageField(upload_to=get_upload_folder, default="default.png", max_length=500)
     objects = UserManager()
 

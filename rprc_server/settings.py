@@ -59,14 +59,16 @@ STATIC_ROOT = path(os.path.join(PROJECT_PARENT_PATH, "rprc_static/static"))
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    path(os.path.join(PROJECT_PATH, "main/static")),
+STATICFILES_DIRS = ("static",
+   #  path(os.path.join(PROJECT_PATH, "static")),
 )
+
+LOGIN_URL = "/login"
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 SECRET_KEY = 'd*_9*!x5@hy7t!uw&zv2n!nu=((#g97-arqhn=i5hjs@5pxi-f'
@@ -85,6 +87,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
     'main',
 )
 
