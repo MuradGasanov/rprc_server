@@ -8,7 +8,7 @@ import os
 __author__ = 'Murad Gasanov'
 
 
-class CashierSupervisor(User):
+class Controller(User):
     def get_upload_folder(self, filename):
         return os.path.join(
             "profile", "id%d" % self.id, filename)
@@ -20,7 +20,7 @@ class CashierSupervisor(User):
     objects = UserManager()
 
 
-@receiver(models.signals.post_delete, sender=CashierSupervisor)
+@receiver(models.signals.post_delete, sender=Controller)
 def auto_delete_file_on_delete(sender, instance, **kwargs):
     """
     Удалить файл при удаление соответствуюшей записи из БД
@@ -31,7 +31,7 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
                 os.remove(instance.image.path)
 
 
-@receiver(models.signals.pre_save, sender=CashierSupervisor)
+@receiver(models.signals.pre_save, sender=Controller)
 def auto_delete_file_on_change(sender, instance, **kwargs):
     """
     Удалить файл при изменение соответствуюшей записи из БД
@@ -39,11 +39,11 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
     if not instance.pk:
         return False
     try:
-        old_file = CashierSupervisor.objects.get(pk=instance.pk).image
+        old_file = Controller.objects.get(pk=instance.pk).image
         if old_file.name != "default.png" and old_file.name != instance.image.name:
             if os.path.isfile(old_file.path):
                 os.remove(old_file.path)
-    except CashierSupervisor.DoesNotExist:
+    except Controller.DoesNotExist:
         return False
 
 
@@ -70,4 +70,4 @@ class CounterData(models.Model):
     additional2_foto = models.ImageField(
         upload_to=get_upload_folder, default="default.png", max_length=500)
     sub = models.ForeignKey(Sub)
-    cashier_supervisor = models.ForeignKey(CashierSupervisor)
+    cashier_supervisor = models.ForeignKey(Controller)

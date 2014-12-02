@@ -105,7 +105,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-CUSTOM_USER_MODEL = 'main.CashierSupervisor'
+CUSTOM_USER_MODEL = 'main.Controller'
 
 ROOT_URLCONF = 'rprc_server.urls'
 
